@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dialogue Distilled | AI, Wealth, and the Questions We Are Not Asking</title>
+<style>
+  /* Font stack: matches brand intent without requiring Google Fonts */
+  :root {
+    --font-head-stack: 'Spectral', 'Georgia', 'Times New Roman', serif;
+    --font-body-stack: 'Source Sans 3', 'Gill Sans', 'Optima', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:    #0A0A0A;
+    --white:    #FFFFFF;
+    --cream:    #F5F0E8;
+    --cream-mid:#EDE7D9;
+    --gold:     #B8953F;
+    --gold-lt:  #D4AD5A;
+    --mid-grey: #6B6B6B;
+    --lt-grey:  #C8C4BC;
+    --font-head: 'Spectral', 'Georgia', 'Times New Roman', serif;
+    --font-body: 'Source Sans 3', 'Gill Sans', 'Optima', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  body {
+    background: var(--cream);
+    font-family: var(--font-body);
+    color: var(--black);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    background: var(--white);
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background: var(--black);
+    padding: 0;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: 120px;
+  }
+
+  .masthead-logo {
+    background: var(--black);
+    border-right: 3px solid var(--gold);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 28px 28px 28px 32px;
+  }
+
+  .masthead-logo .wordmark {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 6px;
+    color: var(--white);
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+
+  .masthead-logo .sub {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 5px;
+  }
+
+  .masthead-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px 36px;
+    border-bottom: 1px solid #1e1e1e;
+  }
+
+  .masthead-tagline {
+    font-family: var(--font-body);
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .masthead-descriptor {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: #888;
+    letter-spacing: 1px;
+  }
+
+  /* ── TITLE BAND ── */
+  .title-band {
+    background: var(--black);
+    padding: 32px 36px 28px;
+    position: relative;
+  }
+
+  .title-band::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin-top: 20px;
+  }
+
+  .publication-name {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 52px;
+    letter-spacing: 3px;
+    color: var(--white);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .publication-strapline {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  /* ── EDITION STRIP ── */
+  .edition-strip {
+    background: var(--cream-mid);
+    padding: 10px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--lt-grey);
+  }
+
+  .edition-strip span {
+    font-family: var(--font-body);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--mid-grey);
+    text-transform: uppercase;
+  }
+
+  .edition-strip .dot {
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 8px;
+    vertical-align: middle;
+  }
+
+  /* ── ARTICLE HEADER ── */
+  .article-header {
+    padding: 48px 36px 0;
+  }
+
+  .article-label {
+    font-family: var(--font-body);
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .article-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .article-title {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 1.15;
+    color: var(--black);
+    margin-bottom: 20px;
+    max-width: 560px;
+  }
+
+  /* ── BYLINE BLOCK ── */
+  .byline-block {
+    margin: 0 36px;
+    padding: 20px 24px;
+    background: var(--black);
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 0;
+    align-items: center;
+  }
+
+  .byline-image {
+    width: 72px;
+    height: 72px;
+    background: #2a2a2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-head);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  .byline-text {
+    padding: 0 20px;
+    border-left: 2px solid var(--gold);
+    margin-left: 0;
+  }
+
+  .byline-name {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+
+  .byline-title {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    margin: 40px 36px;
+    padding: 28px 32px;
+    border-left: 4px solid var(--gold);
+    background: var(--cream);
+    position: relative;
+  }
+
+  .pull-quote p {
+    font-family: var(--font-head);
+    font-style: italic;
+    font-size: 21px;
+    line-height: 1.5;
+    color: var(--black);
+    font-weight: 300;
+  }
+
+  /* ── BODY TEXT ── */
+  .body-content {
+    padding: 36px 36px 0;
+  }
+
+  .body-content p {
+    font-family: var(--font-body);
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: #2a2a2a;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .body-content p.intro {
+    font-family: var(--font-head);
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--black);
+  }
+
+  /* ── SECTION RULE ── */
+  .section-rule {
+    margin: 40px 36px;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+  }
+
+  /* ── CLOSING ── */
+  .closing {
+    padding: 0 36px 36px;
+  }
+
+  .closing .sign-off {
+    font-family: var(--font-head);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--mid-grey);
+    margin-bottom: 4px;
+  }
+
+  .closing .sign-name {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--black);
+  }
+
+  .closing .sign-role {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+
+  /* ── SECONDARY SECTION ── */
+  .secondary-section {
+    margin: 0 36px 0;
+    border-top: 2px solid var(--black);
+    padding-top: 36px;
+  }
+
+  .secondary-section-label {
+    font-family: var(--font-body);
+    font-size: 9px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .secondary-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--lt-grey);
+  }
+
+  .news-item {
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--cream-mid);
+  }
+
+  .news-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .news-item-tag {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--gold);
+    padding: 3px 10px;
+    margin-bottom: 10px;
+  }
+
+  .news-item h3 {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--black);
+    margin-bottom: 10px;
+  }
+
+  .news-item p {
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: #3a3a3a;
+    margin-bottom: 8px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--black);
+    padding: 28px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+  }
+
+  .footer-left {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: #555;
+    letter-spacing: 1px;
+  }
+
+  .footer-left strong {
+    color: var(--gold);
+    font-weight: 400;
+    display: block;
+    margin-bottom: 2px;
+    letter-spacing: 2px;
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+
+  .footer-right {
+    text-align: right;
+  }
+
+  .footer-right p {
+    font-family: var(--font-body);
+    font-size: 10px;
+    color: #555;
+    letter-spacing: 1px;
+  }
+
+  .footer-right a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 11px;
+  }
+
+  /* ── DECORATIVE ELEMENTS ── */
+  .gold-dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+    vertical-align: middle;
+    margin: 0 8px;
+  }
+
+  .image-placeholder {
+    width: 100%;
+    height: 220px;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+
+  .image-placeholder svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ── PRINT STYLES ── */
+  @media print {
+    body { background: #F5F0E8 !important; }
+    .page { max-width: 780px; margin: 0 auto; }
+  }
+
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="masthead-logo">
+      <div class="wordmark">Dialogue</div>
+      <div class="sub">Private Office</div>
+    </div>
+    <div class="masthead-right">
+      <div class="masthead-tagline">Clarity. Opportunity. Security.</div>
+      <div class="masthead-descriptor">Navigating Your Wealth Ecosystem</div>
+    </div>
+  </div>
+
+  <!-- TITLE BAND -->
+  <div class="title-band">
+    <div class="publication-name">Dialogue Distilled</div>
+    <div class="publication-strapline">Less noise. &nbsp;More meaning.</div>
+  </div>
+
+  <!-- EDITION STRIP -->
+  <div class="edition-strip">
+    <span>Spring 2026</span>
+    <span><span class="dot"></span></span>
+    <span>Issue 03</span>
+    <span><span class="dot"></span></span>
+    <span>dialogueprivateoffice.com</span>
+  </div>
+
+  <!-- FOREWORD - joint, James first, Beverley second -->
+  <div style="margin: 0 36px; padding: 28px 0 32px; border-bottom: 1px solid #EDE7D9;">
+    <div style="font-family: var(--font-body); font-size:9px; letter-spacing:4px; color:#B8953F; text-transform:uppercase; margin-bottom:20px;">Foreword</div>
+
+    <div style="display:flex; align-items:center; gap:0;">
+
+      <!-- James -->
+      <div style="display:flex; align-items:center; gap:16px; flex:1; padding-right:28px;">
+        <div style="flex-shrink:0; width:56px; height:56px; border-radius:50%; overflow:hidden; border:1.5px solid #B8953F;">
+          <img src="data:image/jpeg;base64,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" alt="James Badcock" style="width:100%; height:100%; object-fit:cover; object-position:center top;"/>
+        </div>
+        <div>
+          <div style="font-family: var(--font-head); font-weight:600; font-size:14px; color:#0A0A0A; margin-bottom:2px;">James Badcock</div>
+          <div style="font-family: var(--font-body); font-size:10px; color:#B8953F; letter-spacing:1px; text-transform:uppercase; margin-bottom:1px;">CEO &amp; Founder</div>
+          <div style="font-family: var(--font-body); font-size:10px; color:#6B6B6B; font-style:italic;">Dialogue Private Office</div>
+        </div>
+      </div>
+
+      <!-- Gold vertical divider -->
+      <div style="width:1px; height:48px; background:#B8953F; opacity:0.4; flex-shrink:0;"></div>
+
+      <!-- Beverley -->
+      <div style="display:flex; align-items:center; gap:16px; flex:1; padding-left:28px;">
+        <div style="flex-shrink:0; width:56px; height:56px; border-radius:50%; overflow:hidden; border:1.5px solid #B8953F;">
+          <img src="data:image/jpeg;base64,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" alt="Beverley Wedderburn" style="width:100%; height:100%; object-fit:cover; object-position:center top;"/>
+        </div>
+        <div>
+          <div style="font-family: var(--font-head); font-weight:600; font-size:14px; color:#0A0A0A; margin-bottom:2px;">Beverley Wedderburn</div>
+          <div style="font-family: var(--font-body); font-size:10px; color:#B8953F; letter-spacing:1px; text-transform:uppercase; margin-bottom:1px;">COO &amp; Head of Strategic Innovation</div>
+          <div style="font-family: var(--font-body); font-size:10px; color:#6B6B6B; font-style:italic;">Dialogue Private Office</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ARTICLE: JOINT FOREWORD TEXT -->
+  <div class="article-header">
+    <div class="article-label">This Edition</div>
+    <h1 class="article-title">AI, Wealth, and the Questions We Are Not Asking</h1>
+  </div>
+
+  <div class="body-content" style="padding-top:28px;">
+    <p class="intro">There is no shortage of commentary on AI and the wealth management industry. Reports from major institutions tell us that adoption is accelerating, that efficiency gains are real, and that those who move fastest will be best positioned.</p>
+    <p>We think that framing is missing something important.</p>
+    <p>This month we held our first Dialogue Circle, bringing together senior professionals to sit with questions that rarely get asked directly, and without reaching for easy answers.</p>
+    <p>Dialogue Circle exists because we believe the most consequential questions are not being asked loudly enough. Not how quickly can we adopt, but what are we actually running, and do we understand it. Not what can AI do for our process, but who is accountable when it shapes a decision that goes wrong. Not whether AI serves our clients, but whether it reflects the values, cultures, and complexities of the families whose futures depend on getting this right.</p>
+    <p>In this edition of Dialogue Distilled, we have asked two of the voices who helped shape that evening to go deeper. Dion Bailey writes on literacy, drawing on a rare vantage point across news media, insurance, finance, and healthcare, watching AI land inside organisations that often have little clarity about what their systems are actually trained on. Kate Maslova writes on risk, bringing the hard-won operational perspective of someone who has built wealth management infrastructure at scale across EMEA and navigated the regulatory complexity that most commentary in this space glosses over.</p>
+    <p>Accountability, the question of who ultimately owns the decisions that algorithms increasingly inform, runs through both pieces as an unresolved challenge. It is a question we intend to keep asking.</p>
+    <p>The next Dialogue Circle takes place in June.</p>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing" style="padding-top:20px; padding-bottom:36px;">
+    <div class="sign-name">James Badcock and Beverley Wedderburn</div>
+    <div class="sign-role">Dialogue Private Office</div>
+  </div>
+
+  <div class="section-rule"></div>
+
+  <!-- CONTRIBUTOR SECTION MOCKUP -->
+  <div style="margin: 48px 36px 0; border-top: 2px solid #0A0A0A; padding-top: 36px;">
+
+    <!-- Section label -->
+    <div style="font-family: var(--font-body); font-size:9px; letter-spacing:5px; color:#B8953F; text-transform:uppercase; margin-bottom:28px; display:flex; align-items:center; gap:12px;">
+      Contributor Perspectives
+      <span style="flex:1; height:1px; background:#C8C4BC; display:block;"></span>
+    </div>
+
+    <!-- Kate's article -->
+    <div style="margin-bottom:40px; padding-bottom:40px; border-bottom:1px solid #EDE7D9;">
+
+      <!-- Contributor byline -->
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+        <div style="flex-shrink:0; width:48px; height:48px; border-radius:50%; overflow:hidden; border:1.5px solid #B8953F;">
+          <img src="data:image/jpeg;base64,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" alt="Katherine Maslova" style="width:100%; height:100%; object-fit:cover; object-position:center top;"/>
+        </div>
+        <div>
+          <div style="font-family: var(--font-head); font-weight:600; font-size:13px; color:#0A0A0A; margin-bottom:1px;">Katherine Maslova</div>
+          <div style="font-family: var(--font-body); font-size:10px; color:#B8953F; letter-spacing:1.5px; text-transform:uppercase;">Family office advisor, founding partner of Bourgeois Bohème Fintech</div>
+        </div>
+      </div>
+
+      <!-- Article -->
+      <div style="font-family: var(--font-body); font-size:9px; letter-spacing:3px; color:#B8953F; text-transform:uppercase; margin-bottom:8px;">On Risk</div>
+      <h3 style="font-family: var(--font-head); font-weight:600; font-size:20px; line-height:1.3; color:#0A0A0A; margin-bottom:18px;">AI Risks: The Questions to Ask</h3>
+
+      <p style="font-family: var(--font-head); font-size:15px; line-height:1.75; color:#2a2a2a; margin-bottom:16px; font-style:italic; font-weight:300;">Most conversations about AI risk in wealth management focus on the obvious: algorithmic bias, regulatory exposure, and data leaks. These matter. But having built and tested AI agentic infrastructure from the ground up, I want to flag a quieter set of risks that family offices are significantly underestimating.</p>
+
+      <p style="font-family: var(--font-body); font-size:14.5px; line-height:1.8; color:#2a2a2a; margin-bottom:14px;">The first is data residency. A 2025 survey found that fewer than 30% of wealth management firms could identify the precise jurisdiction in which their AI vendor&#8217;s model was hosted. When a family office connects client data to an AI tool, most principals have no idea where that data sits or who has contractual access to it. The question every family should be asking every vendor is simple: where is the model hosted, and who can see what? In Europe and the Middle East, that is not a theoretical concern. It is a regulatory and reputational exposure hiding in plain sight.</p>
+
+      <p style="font-family: var(--font-body); font-size:14.5px; line-height:1.8; color:#2a2a2a; margin-bottom:14px;">The second is what I would call governance by assumption. Many offices are using tools quietly integrated into daily workflows with no oversight structure, no accountability framework, and no human override protocol. When something goes wrong, nobody knows who is responsible. And things do go wrong. I have a documented case: one autonomous agent breached an internal corporate chatbot in under two hours, accessing tens of millions of confidential messages through a single unpatched API. Not a sophisticated nation-state attack. Just one AI agent.</p>
+
+      <p style="font-family: var(--font-body); font-size:14.5px; line-height:1.8; color:#2a2a2a; margin-bottom:14px;">The third is the absence of practical boundaries. NVIDIA&#8217;s internal security team applies what they call a Rule of Two: AI agents can access files, access the internet, and execute code, but never all three at once. A simple boundary that most family offices have not thought about at all.</p>
+
+      <p style="font-family: var(--font-body); font-size:14.5px; line-height:1.8; color:#2a2a2a; margin-bottom:14px;">Before any firm-wide rollout, start small. Use ready-made tools to solve your own pain points first. Understand what access they require, what they touch, and how they behave before bringing in consultants who are often more motivated to build than to protect. The organisations that navigate this well are not those who block everything or chase everything. They are those who learn early by making small, deliberate steps, drawing smart boundaries, and staying curious without losing judgment.</p>
+
+      <p style="font-family: var(--font-body); font-size:14.5px; line-height:1.8; color:#2a2a2a; margin-bottom:20px;">One rule to start with today: never paste private client information into a public AI tool. It sounds obvious. It is not yet standard practice.</p>
+
+      <!-- Contributor bio -->
+      <div style="background:#F5F0E8; padding:16px 20px; border-left:3px solid #B8953F;">
+        <p style="font-family: var(--font-body); font-size:12.5px; line-height:1.7; color:#6B6B6B; margin:0; font-style:italic;">Katherine Maslova is an investor and entrepreneur across wealthtech and family office software, advising families and family offices across Europe and MENA. She works at the intersection of human networks and modern family office infrastructure, helping principals navigate complexity with the right people, not just the right tools.</p>
+      </div>
+    </div>
+
+    <!-- Dion Bailey article -->
+    <div style="margin-bottom:8px;">
+
+      <!-- Contributor byline -->
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+        <div style="flex-shrink:0; width:48px; height:48px; border-radius:50%; overflow:hidden; border:1.5px solid #B8953F;">
+          <img src="data:image/jpeg;base64,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" alt="Dion Bailey" style="width:100%; height:100%; object-fit:cover; object-position:center top;"/>
+        </div>
+        <div>
+          <div style="font-family: var(--font-head); font-weight:600; font-size:13px; color:#0A0A0A; margin-bottom:1px;">Dion Bailey</div>
+          <div style="font-family: var(--font-body); font-size:10px; color:#B8953F; letter-spacing:1.5px; text-transform:uppercase;">Co-founder &amp; Chief Product and Technology Officer</div>
+        </div>
+      </div>
+
+      <!-- Article -->
+      <div style="font-family: var(--font-body); font-size:9px; letter-spacing:3px; color:#B8953F; text-transform:uppercase; margin-bottom:8px;">On Literacy</div>
+      <h3 style="font-family: var(--font-head); font-weight:600; font-size:20px; line-height:1.3; color:#0A0A0A; margin-bottom:18px;">Do You Actually Understand What You Have Already Adopted?</h3>
+
+      <p style="font-family: var(--font-head); font-size:15px; line-height:1.75; color:#2a2a2a; margin-bottom:16px; font-style:italic; font-weight:300;">I sit across multiple industries simultaneously, and the thing I keep bumping into is the same conversation, dressed differently depending on the room. Everyone is talking about AI adoption. Boards, advisers, executives. I understand it. But adoption was the conversation from a few years ago. The question that actually matters now is whether you understand what you have already adopted.</p>
+
+      <p style="font-family: var(--font-body); font-size:14.5px; line-height:1.8; color:#2a2a2a; margin-bottom:14px;">Here is what I mean. Open your Gmail. AI is in there. Your CRM, your compliance screening, your portfolio analytics. AI is already in there too. These were not decisions most people made consciously. They came bundled with the product, turned on by default, and now they are informing the work. That is not a criticism. That is just where we are. The real question is whether anyone has actually looked at what these systems are trained on, or what assumptions they are carrying.</p>
+
+      <p style="font-family: var(--font-body); font-size:14.5px; line-height:1.8; color:#2a2a2a; margin-bottom:14px;">Because here is the part that does not get said enough. These are prediction engines. They sound like they understand things. They do not. They have no grasp of context, culture, or consequence. They reflect the data they were trained on, and that data has blind spots baked in.</p>
+
+      <p style="font-family: var(--font-body); font-size:14.5px; line-height:1.8; color:#2a2a2a; margin-bottom:14px;">In 2024, Goldman Sachs faced regulatory penalties over the Apple Card credit algorithm. The system was found to have produced discriminatory outcomes across applicant profiles. Goldman could not clearly explain why, even when the decisions were technically within the rules. The institution did not know what it was running. You cannot challenge something you cannot see.</p>
+
+      <p style="font-family: var(--font-body); font-size:14.5px; line-height:1.8; color:#2a2a2a; margin-bottom:14px;">Scale that into multigenerational wealth decisions across jurisdictions and cultures, and the stakes feel different. These models are overwhelmingly built on Western, English language data. There is documented evidence that the same tool gives materially different answers depending on what language you ask it in. That is not a footnote for a family operating across geographies. That is a structural problem sitting in the middle of your process.</p>
+
+      <p style="font-family: var(--font-body); font-size:14.5px; line-height:1.8; color:#2a2a2a; margin-bottom:14px;">Literacy is not about knowing what AI is. It is about knowing when it is wrong, when it has drifted, when it is confidently telling you something that does not hold.</p>
+
+      <p style="font-family: var(--font-body); font-size:14.5px; line-height:1.8; color:#2a2a2a; margin-bottom:20px;">The system you are trusting most right now was built by someone, trained on something, and designed to see certain things clearly and others not at all. The question worth asking, whether you are a principal or the adviser beside one, is whether you actually know which is which.</p>
+
+      <!-- Contributor bio -->
+      <div style="background:#F5F0E8; padding:16px 20px; border-left:3px solid #B8953F;">
+        <p style="font-family: var(--font-body); font-size:12.5px; line-height:1.7; color:#6B6B6B; margin:0; font-style:italic;">Dion Bailey is an entrepreneur and Adjunct Professor who helps businesses grow through context, insight, and collaboration. He is Co-founder and Chief Product and Technology Officer of Caliber, a media company with newsrooms in New York and London building a new era for journalism across more than 20 countries.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CLOSING CTA -->
+  <div style="margin: 48px 36px 0; padding: 32px 36px; background: #0A0A0A; border-left: 3px solid #B8953F;">
+    <div style="font-family: var(--font-body); font-size:9px; letter-spacing:4px; color:#B8953F; text-transform:uppercase; margin-bottom:14px;">The Next Dialogue Circle</div>
+    <p style="font-family: var(--font-head); font-style:italic; font-weight:300; font-size:17px; line-height:1.6; color:#FFFFFF; margin-bottom:16px;">The next Dialogue Circle takes place in June.</p>
+    <a href="/cdn-cgi/l/email-protection#92faf7fefefdd2f6fbf3fefdf5e7f7e2e0fbe4f3e6f7fdf4f4fbf1f7bcf1fdff" style="font-family: var(--font-body); font-size:10px; letter-spacing:3px; color:#B8953F; text-transform:uppercase; text-decoration:none; border-bottom:1px solid #B8953F; padding-bottom:2px;">Get in touch</a>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="background:#0A0A0A; margin-top:2px; padding:28px 36px; display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:20px;">
+
+    <!-- Standing invitation -->
+    <div style="flex:1; min-width:260px;">
+      <div style="font-family: var(--font-head); font-weight:600; font-size:13px; color:#FFFFFF; margin-bottom:6px;">Dialogue Private Office</div>
+      <p style="font-family: var(--font-body); font-size:12px; line-height:1.7; color:#6B6B6B; margin-bottom:0; max-width:340px;">We work with families and advisers who value clarity over noise. If you would like to explore whether we might be useful to you, the conversation starts here.</p>
+    </div>
+
+    <!-- Contact and legal -->
+    <div style="text-align:right;">
+      <a href="https://dialogueprivateoffice.com" style="font-family: var(--font-body); font-size:11px; color:#B8953F; text-decoration:none; display:block; margin-bottom:6px;">dialogueprivateoffice.com</a>
+      <div style="font-family: var(--font-body); font-size:10px; color:#444; line-height:1.8;">
+        <span style="color:#B8953F; letter-spacing:1px; font-size:9px; text-transform:uppercase;">London</span><br>
+        1 Warwick Street, London W1B 5LR<br>
+        +44 204 604 1416<br>
+        <br>
+        <span style="color:#B8953F; letter-spacing:1px; font-size:9px; text-transform:uppercase;">Geneva</span><br>
+        Rue du Port 3, 1204 Geneva, Switzerland<br>
+        <br>
+        <span style="color:#333; font-style:italic;">Confidential. For intended recipients only.</span><br>
+        <span style="color:#333;">&#169; 2026 Dialogue Priv
